@@ -38,9 +38,9 @@ def gcd_loop_compact(a, b):
 
         # Is there a more compact way to write the same thing?
         # How can you update a and b without the intermediate variable rn?
-        rn = b
+        temp = b
         b = a%b
-        a = rn
+        a = temp
         
         print ("gcd_loop_compact, iter ", iter, "a ", a, "b ", b)
         
