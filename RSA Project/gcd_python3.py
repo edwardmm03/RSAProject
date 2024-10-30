@@ -77,15 +77,15 @@ def extended_gcd_loop(a, b):
     while b != 0:
         iter+=1
 
-        #qn = ?
+        qn = a // b
 
-        #rn = ?
-        #a = ?
-        #b = ?
+        rn = a % b
+        a = b
+        b = rn
 
     
-        #x2 = ?
-        #y2 = ?
+        x2 = x - qn * x2
+        y2 = y - qn * y2
 
         x = x1
         y = y1
