@@ -59,14 +59,14 @@ def gcd_recursive(a, b):
 
 # Write a well comments, not compact, non-recursive version of extended_gcd_loop
 def extended_gcd_loop(a, b):
+    # initiate iteration counter
+    iter = 0
 
-    global iter
-
-    # TODO: Once your code is complete, consider whether this is necessary?
+    # Base case for when a == 0, since the other condition is the while loop
     if a == 0:
        return b, 0, 1
 
-   # Why is this the correct inititialization?
+   # 'Base' case for conducting the Euclidean Algorithm the first time
     x = 1
     y = 0
     x1 = 0
@@ -75,18 +75,20 @@ def extended_gcd_loop(a, b):
     y2 = 0
 
     while b != 0:
+        # keep track of the iterations
         iter+=1
-
+        # compute quotient
         qn = a // b
-
+        # compute remainder
         rn = a % b
+        # save a and b, also lets the algorithm solve when a <= b 
         a = b
         b = rn
 
-    
+        # do the Euclidean algorithm
         x2 = x - qn * x2
         y2 = y - qn * y2
-
+        # update coefficient
         x = x1
         y = y1
         x1 = x2
@@ -94,7 +96,7 @@ def extended_gcd_loop(a, b):
         
         print ("extended_gcd_loop, iter ", iter, "a ", a, "b ", b, "x ", x, "y ", y)
         
-
+    # return a, which is the gcd, and x y, the coefficients
     return a, x, y
 
 
