@@ -20,7 +20,56 @@ import math
 class RSA_KeyGeneration:
     def __init__(self, p, q):
         """assume p and q are distinct primes"""
+        def extended_gcd_loop(a, b):
+            #global iter
 
+            # TODO: Once your code is complete, consider whether this is necessary?
+            if a == 0:
+                return b, 0, 1
+
+            # Why is this the correct inititialization?
+            x = 1
+            y = 0
+            x1 = 0
+            y1 = 1
+            x2 = 0
+            y2 = 0
+
+            while b != 0:
+                #iter+=1
+
+                qn = a // b
+
+                rn = a % b
+                a = b
+                b = rn
+
+    
+                x2 = x - qn * x2
+                y2 = y - qn * y2
+
+                x = x1
+                y = y1
+                x1 = x2
+                y1 = y2
+        
+                print ("extended_gcd_loop,", "a ", a, "b ", b, "x ", x, "y ", y)
+        
+
+            return a, x, y
+
+        def MMI_loop(a, n):
+            gcd, x, y = extended_gcd_loop(a,n)
+            if (gcd != 1):
+                print("MMI does not exist")
+####
+                return None
+            else:
+                print ("Coefficients: ", x, " and ", y)
+
+
+                return (x % n + n) % n
+        
         self.__n = p*q #bug found: self.__phi_n is incorrect as n = p*q
         self.__z= (p-1)*(q-1) #bug found: changed to being var z as z = (p-1)(q-1)
 
@@ -29,7 +78,7 @@ class RSA_KeyGeneration:
         self.__e = 13
         
         #self.__d = pow(self.__e, -1, self.__z) #bug found: using self.__n here when z must be used to determine a d 
-        self.__d = self.MMI_loop(self.__e, self.__z)
+        self.__d = MMI_loop(self.__e, self.__z)
 
     def getPrivateKey(self):
         return self.__d, self.__n
@@ -38,8 +87,7 @@ class RSA_KeyGeneration:
 			
         return self.__e, self.__n
 
-    def extended_gcd_loop(a, b):
-
+    def extended_gcd_loop(self,a, b):
         global iter
 
         # TODO: Once your code is complete, consider whether this is necessary?
@@ -76,23 +124,6 @@ class RSA_KeyGeneration:
         
 
         return a, x, y
-
-    def MMI_loop(a, n):
-
-        gcd, x, y = extended_gcd_loop(a,n)
-        if (gcd != 1):
-            print("MMI does not exist")
-####
-            return None
-        else:
-            print ("Coefficients: ", x, " and ", y)
-
-####        print ("x % n", x%n)
-        # TODO: will either of these variants work? why or why not?
-        # If yes say why? If no, show an example where they do not?
-        #return (x % n + n) % n
-####        return x %n
-            return (x % n + n) % n
 
 if __name__ == "__main__":
 
