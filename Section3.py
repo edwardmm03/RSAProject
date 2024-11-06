@@ -21,8 +21,8 @@ def int_to_str(num):
 my_str = "abc def"
 my_str_int = str_to_int(my_str)
 
-print(my_str)
+print("String to convert:",my_str)
 
-print(my_str_int)
+print("Converted int:",my_str_int)
 
-print(int_to_str(my_str_int))
+print("Convert back to string:",int_to_str(my_str_int))
