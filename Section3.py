@@ -5,7 +5,7 @@ def str_to_int(string):
     for char in string:
         z = ord(char)   # convert char to ascii int
         hex_values.append(str(f'{z:x}'))   # add hex to buffer
-    return ''.join(hex_values)   # join all elements and return
+    return int(''.join(hex_values))   # join all elements and return
 
 def int_to_str(num):
     # Convert ascii values back to characters
